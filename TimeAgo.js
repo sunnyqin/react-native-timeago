@@ -17,14 +17,16 @@ var TimeAgo = React.createClass({
     ]).isRequired,
     interval: PropTypes.number,
     hideAgo: PropTypes.bool,
-    showLeft: PropTypes.bool
+    showLeft: PropTypes.bool,
+    localization: PropTypes.bool
   },
 
   getDefaultProps() {
     return {
       hideAgo: false,
       showLeft: false,
-      interval: 60000
+      interval: 60000,
+      localization: false
     }
   },
 
@@ -46,7 +48,7 @@ var TimeAgo = React.createClass({
   render() {
   	if (this.props.showLeft) {
   		return (
-      		<Text {...this.props}>{moment(this.props.time).from(moment(), true)} left</Text>
+      		<Text {...this.props}>{moment(this.props.time).from(moment(), true)} {this.props.localization ? 'restantes': 'left'}</Text>
     	);
   	} else {
   		return (
